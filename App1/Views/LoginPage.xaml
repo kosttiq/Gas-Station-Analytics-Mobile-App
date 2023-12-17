@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.LoginPage"
+             BackgroundColor="#112B47"
+             Shell.NavBarIsVisible="False"
+             >
+    
+
+    <ContentPage.Content>
+        <StackLayout Padding="40" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <!-- картинка на странице логин -->
+            <Image Source="analysis.png" WidthRequest="200" HeightRequest="200" ></Image>
+            <!-- поля ввода логина и пароля -->
+            <Entry x:Name="txtUsername" Placeholder="Логин" TextColor="White" PlaceholderColor="LightGray" FontSize="12"></Entry>
+            <Entry x:Name="txtPassword" Placeholder="Пароль"  IsPassword="True" TextColor="White" PlaceholderColor="LightGray" FontSize="12" ></Entry>
+            <Button 
+                VerticalOptions="Center"
+                Text="Войти"
+                FontSize="10"
+                TextColor="Black"
+                BackgroundColor="LightBlue"
+                BorderWidth="1.5"
+                CornerRadius="50"
+                Clicked="Button_Clicked"
+               
+                ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

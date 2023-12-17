@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Views.ItemsPage"
+             Title="Данные по продажам"
+             xmlns:local="clr-namespace:App1.ViewModels"  
+             xmlns:model="clr-namespace:App1.Models"  
+             x:Name="BrowseItemsPage"
+             BackgroundColor="#112B47">
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10,10,10,10">
+                        <Frame BackgroundColor="#3D758D" WidthRequest="20" HeightRequest="210" Margin="0" CornerRadius="10" BorderColor="#112B47">
+                            <StackLayout Padding="10, 0, 10, 10" x:DataType="model:Item" >
+                                <Label Text="{Binding Name}" 
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13"
+FontAttributes="Bold"
+TextColor="White"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Продажа факт, руб: " FontSize="13" HorizontalOptions="Center" TextColor="White"/>
+                                    <Label Text="{Binding Sells_Rub_Fact}"
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13" 
+TextColor="White"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Продажа план, руб: " FontSize="13" HorizontalOptions="Center" TextColor="White"/>
+                                    <Label Text="{Binding Sells_Rub_Plan}"
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13"
+TextColor="White"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Продажа факт, литр: " FontSize="13" HorizontalOptions="Center" TextColor="White"/>
+                                    <Label Text="{Binding Sells_Litres_Fact}"
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13" 
+TextColor="White"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Продажа план, литр: " FontSize="13" HorizontalOptions="Center" TextColor="White"/>
+                                    <Label Text="{Binding Sells_Litres_Plan}"
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13" 
+TextColor="White"/>
+                                </StackLayout>
+
+
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Количество заправок, раз: " FontSize="13" HorizontalOptions="Center" TextColor="White"/>
+                                    <Label Text="{Binding Count_Fact}"
+LineBreakMode="NoWrap"
+Style="{DynamicResource ListItemDetailTextStyle}"
+FontSize="13" 
+TextColor="White"/>
+                                </StackLayout>
+
+
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+            NumberOfTapsRequired="1"
+            Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+            CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                        
+                  
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
